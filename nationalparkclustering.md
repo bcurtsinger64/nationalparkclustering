@@ -20,8 +20,6 @@ TSrepr - time series dimension reduction package
 
 ggplot2 - data visualization toolkit
 
-fpc - provides clusterboot function to validate clusters
-
 reshape2 - easily reshape dataframes
 
     ## [1] 58
@@ -51,8 +49,8 @@ reshape2 - easily reshape dataframes
     ##  FL     : 540   Max.   :1492508   Max.   :180.00  
     ##  (Other):4860
 
-First Approach: TSrepr
-----------------------
+First Approach: Mean Seasonal Profile
+-------------------------------------
 
 The first approach at clustering will be through dimension reduction & clustering on those dimensions. Time series never fails to represent the curse of dimensionality. With 58 series of 180 observations each, the size of the data can be a problem of its own. Thus, reducing the series to more manageable dimensions can make analysis much simpler. For reducing the series, I will use the package TSrepr (a great write up by the author highlighting this approach in action is provided here: <https://petolau.github.io/TSrepr-clustering-time-series-representations/>). The data must be in a matrix format, with rows indicating a unique series. Then, we will reduce dimensions by finding the mean seasonal profile for each series, and use kmeans clustering to group the series. To find an ideal number of clusters, we will use the screeplot to find a reasonable number of clusters to minimize SSE within a cluster.
 
@@ -93,6 +91,9 @@ ggplot(natpark, aes(x = trend, y = norm_min_max(recreationvisits), group = parkn
 ![](nationalparkclustering_files/figure-markdown_github/Overall%20Trend-1.png)
 
 We can still see the overlapping seasonal patterns, but it clearly doesn't consider the magnitude of the visits and only considers seasonality. This would be a useful way to help allocate resources across different seasons, but wouldn't tell much about how many visitors to actually expect.
+
+Second Approach: FeaClip
+------------------------
 
 Let's try another technique: FeaClip. This method uses windowed feature extraction and has the benefit of not requiring normalization. Below we will follow the same methodology: identify an appropriate number of clusters and visualize. Using 10 clusters seems reasonable here.
 
