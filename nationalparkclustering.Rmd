@@ -17,8 +17,6 @@ In this post, I will use monthly recreational visitation data from 2003-2017 to 
 
 Data source: https://irma.nps.gov/Stats/
 
-pacman - easy installation/loading of packages
-
 tidyverse - data manipulation toolkit
 
 TSrepr - time series dimension reduction package
@@ -29,11 +27,10 @@ reshape2 - easily reshape dataframes
 
 
 ```{r Introduction, echo = F, message = F}
-if(!require(pacman)) install.packages('pacman')
-p_load(tidyverse)
-p_load(TSrepr)
-p_load(ggplot2)
-p_load(reshape2)
+library(tidyverse)
+library(TSrepr)
+library(ggplot2)
+library(reshape2)
 data <- read_csv('natpark.csv')
 
 natpark <- data %>%
