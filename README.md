@@ -12,8 +12,6 @@ In this post, I will use monthly recreational visitation data from 2003-2017 to 
 
 Data source: <https://irma.nps.gov/Stats/>
 
-pacman - easy installation/loading of packages
-
 tidyverse - data manipulation toolkit
 
 TSrepr - time series dimension reduction package
